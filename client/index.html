@@ -1,0 +1,15 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Index</h1>
+    <div class="messages">
+    </div>
+    <form onsubmit="sendMessage(this)">
+      <input type="text" id="nickname" placeholder="Ma">
+      <textarea id="text" placeholder="Message here..."></textarea>
+      <input type="submit" value="Send">
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
