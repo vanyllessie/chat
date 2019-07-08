@@ -1,9 +1,17 @@
-console.log('cliente')
 var socket = io();
 
+var id = null;
+
 socket.on('messages', function(data){
-  console.log(data)
   render(data);
+})
+
+socket.on('log', function(data){
+  if(data){
+    document.querySelector(".form-messages").classList.remove("hidden")
+    document.querySelector(".form-log").classList.add("hidden")
+    id = data;
+  }
 })
 
 function render(data){
@@ -17,10 +25,18 @@ function render(data){
   document.querySelector(".messages").innerHTML = html;
 }
 
-function sendMessage(ev){
+function sendLog(ev){
   var message = {
     nickname: document.getElementById('nickname').value,
+  }
+  socket.emit('add-log', message)
+  return false;
+}
+
+function sendMessage(ev){
+  var message = {
     text: document.getElementById('text').value,
+    idUser: id
   }
   socket.emit('add-message', message)
 
